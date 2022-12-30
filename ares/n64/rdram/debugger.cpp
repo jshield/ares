@@ -1,6 +1,6 @@
 auto RDRAM::Debugger::load(Node::Object parent) -> void {
   memory.ram = parent->append<Node::Debugger::Memory>("RDRAM");
-  memory.ram->setSize(4_MiB + 4_MiB);
+  memory.ram->setSize(rdram.ram.size);
   memory.ram->setRead([&](u32 address) -> u8 {
     return rdram.ram.read<Byte>(address);
   });

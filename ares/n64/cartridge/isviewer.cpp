@@ -12,8 +12,16 @@ auto Cartridge::ISViewer::readWord(u32 address) -> u32 {
 auto Cartridge::ISViewer::writeWord(u32 address, u32 data) -> void {
   ram.write<Word>(address, data);
   address = (address & 0xffff) >> 2;
-
   if(address == 5) {
+    if(unlikely(tracer.log->enabled())) {
+      string message = "";
+      for(auto address : range(u16(data))) {
+        char c = ram.read<Byte>(0x20 + address);
+        message.append(c);
+      }
+      tracer.log->notify(message);
+    } 
+    else
     for(auto address : range(u16(data))) {
       char c = ram.read<Byte>(0x20 + address);
       fputc(c, stdout);

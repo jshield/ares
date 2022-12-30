@@ -44,6 +44,11 @@ struct Cartridge {
     //isviewer.cpp
     auto readWord(u32 address) -> u32;
     auto writeWord(u32 address, u32 data) -> void;
+
+    struct Tracer {
+      Node::Debugger::Tracer::Notification log;
+    } tracer;
+    
   } isviewer;
 
   struct Debugger {
@@ -56,6 +61,7 @@ struct Cartridge {
       Node::Debugger::Memory ram;
       Node::Debugger::Memory eeprom;
       Node::Debugger::Memory flash;
+      Node::Debugger::Memory isviewer;
     } memory;
   } debugger;
 

@@ -11,3 +11,4 @@ struct Controller {
 #include "port.hpp"
 #include "gamepad/gamepad.hpp"
 #include "mouse/mouse.hpp"
+#include "randnet/keyboard.hpp"
